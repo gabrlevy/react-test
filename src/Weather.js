@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Forecast from "./Forecast";
 import axios from "axios";
 import "./weather.css";
+import ReactAnimatedWeather from 'react-animated-weather';
+
 
 
 export default function Weather() {
@@ -27,6 +29,12 @@ export default function Weather() {
   function newCity(event) {
     setCity(event.target.value);
   }
+  const defaults = {
+    icon: 'CLEAR_DAY',
+    color: 'goldenrod',
+    size: 70,
+    animate: true
+  };
 
   return (
     <div className="container shadow p-5 mb-5 bg-white rounded mb-0">
@@ -56,13 +64,14 @@ export default function Weather() {
       <div className="row">
         <div className="col-6">
           <div className="clearfix weather-temperature">
-            <img
-              src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"
-              alt="clear"
-              className="float-left"
-              id="icon"
-            />
-            <div className="float-left">
+          <ReactAnimatedWeather
+          className="float-left"
+    icon={defaults.icon}
+    color={defaults.color}
+    size={defaults.size}
+    animate={defaults.animate}
+  />
+            <div className="float-right">
               <span className="temperature" id="temperature">
                 {temperature}
               </span>
