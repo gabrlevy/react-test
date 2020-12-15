@@ -44,9 +44,8 @@ h1 {
     font: arial, sans-serif;
   }
   
-  #icon {
-    position: relative;
-    top: 17px;
+  .icon {
+    
   }
   .units {
     position: relative;

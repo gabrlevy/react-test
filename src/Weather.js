@@ -64,14 +64,14 @@ export default function Weather() {
       <div className="row">
         <div className="col-6">
           <div className="clearfix weather-temperature">
-          <ReactAnimatedWeather
-          className="float-left"
+          <div className="icon float-left p-2"><ReactAnimatedWeather
+          className="float-left icon"
     icon={defaults.icon}
     color={defaults.color}
     size={defaults.size}
     animate={defaults.animate}
-  />
-            <div className="float-right">
+  /></div>
+            <div className="float-left">
               <span className="temperature" id="temperature">
                 {temperature}
               </span>
