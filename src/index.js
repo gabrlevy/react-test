@@ -1,15 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-//import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Weather from "./Weather"
+//import Weather from "./Weather"
 import 'bootstrap/dist/css/bootstrap.min.css';
+//import Signature from './Signature';
+import App from './App';
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <Weather />
+   <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

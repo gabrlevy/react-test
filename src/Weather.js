@@ -29,7 +29,7 @@ export default function Weather() {
   }
 
   return (
-    <div className="container shadow p-5 mb-5 bg-white rounded">
+    <div className="container shadow p-5 mb-5 bg-white rounded mb-0">
     <div className="search">
       <form className="search-engine row p-2 mb-2" onSubmit={handleSubmit}>
         <input
@@ -46,17 +46,10 @@ export default function Weather() {
           value="Search"
           className="button form-control btn btn-primary shadow-sm col-3"
         />
-
-        <input
-          type="submit"
-          value="Current City"
-          className="button form-control btn btn-secondary shadow-sm col-3"
-        />
       </form>
       <div className="overview">
         <h1>{message}</h1>
         <ul>
-          <li>Updated on Monday 13:00</li>
           <li>{description}</li>
         </ul>
       </div>
