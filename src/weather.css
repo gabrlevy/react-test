@@ -1,0 +1,59 @@
+h1 {
+    text-align: center;
+    color: rgb(135, 135, 135);
+    display: block;
+    font-family: arial, sans-serif;
+    font-size: 24px;
+    font-weight: 100;
+    line-height: 28px;
+    text-align: left;
+    margin-bottom: 0px;
+  }
+  ul {
+    margin: 0px;
+    padding: 0px;
+    
+  }
+  li {
+    color: rgb(134, 135, 135);
+    list-style: none;
+    display: block;
+    font-size: 16px;
+    font-weight: 100;
+    line-height: 19.2px;
+    text-align: left;
+  }
+  li:first-letter {
+    text-transform: capitalize;
+  }
+  
+  .button {
+    display: inline-block;
+    width: 110px;
+    margin: 10px;
+  }
+  
+  .form {
+    width: 200px;
+    display: inline-block;
+    margin: 10px;
+  }
+  .temperature {
+    font-size: 64px;
+    font-weight: 400;
+    font: arial, sans-serif;
+  }
+  
+  #icon {
+    position: relative;
+    top: 17px;
+  }
+  .units {
+    position: relative;
+    font-size: 16px;
+    top: -32px;
+  }
+  .details {
+    position: relative;
+    top: 20px;
+  }

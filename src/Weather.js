@@ -1,14 +1,115 @@
-import React from "react";
+import React, { useState } from "react";
+import Forecast from "./Forecast";
 import axios from "axios";
+import "./weather.css";
 
-export default function Weather(props) {
-    function handleSubmit(response) {
-        alert(`The weather in Zagreb is ${response.data.main.temp}°C`)
-      }
-      let url = `https://api.openweathermap.org/data/2.5/weather?q=${props.city}&appid=3ba861b54cd5df7a279d3463ebc72481&units=metric`;
-      axios.get(url).then(handleSubmit);
-      
-      
-      return <h2> hello from weather</h2>
 
+export default function Weather() {
+  const [city, setCity] = useState(" ");
+  const [message, setMessage] = useState(" ");
+  const [temperature, setTemperature] = useState(null);
+  const [description, setDescription] = useState(" ");
+  const [humidity, setHumidity] = useState(null);
+  const [wind, setWind] = useState(null);
+
+  function showTemperature(response) {
+    setTemperature(Math.round(response.data.main.temp));
+    setDescription(response.data.weather[0].description);
+    setHumidity(response.data.main.humidity);
+    setWind(response.data.wind.speed);
+    setMessage(response.data.name);
+  }
+  function handleSubmit(event) {
+    event.preventDefault();
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=3ba861b54cd5df7a279d3463ebc72481&units=metric`;
+    axios.get(url).then(showTemperature);
+  }
+  function newCity(event) {
+    setCity(event.target.value);
+  }
+
+  return (
+    <div className="container shadow p-5 mb-5 bg-white rounded">
+    <div className="search">
+      <form className="search-engine row p-2 mb-2" onSubmit={handleSubmit}>
+        <input
+          type="search"
+          id="city-input"
+          placeholder="Type a city..."
+          autofocus="on"
+          autocomplete="off"
+          className="form form-control shadow-sm col-4"
+          onChange={newCity}
+        />
+        <input
+          type="submit"
+          value="Search"
+          className="button form-control btn btn-primary shadow-sm col-3"
+        />
+
+        <input
+          type="submit"
+          value="Current City"
+          className="button form-control btn btn-secondary shadow-sm col-3"
+        />
+      </form>
+      <div className="overview">
+        <h1>{message}</h1>
+        <ul>
+          <li>Updated on Monday 13:00</li>
+          <li>{description}</li>
+        </ul>
+      </div>
+      <div className="row">
+        <div className="col-6">
+          <div className="clearfix weather-temperature">
+            <img
+              src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"
+              alt="clear"
+              className="float-left"
+              id="icon"
+            />
+            <div className="float-left">
+              <span className="temperature" id="temperature">
+                {temperature}
+              </span>
+              <span className="units">
+                <span>
+                  <a href="/" id="celsius-link">
+                    °C
+                  </a>
+                </span>{" "}
+                |
+                <span>
+                  <a href="/" id="fahrenheit-link">
+                    °F
+                  </a>
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div className="details float-right col-6">
+          <ul>
+            <li>
+              Humidity: {humidity}%
+            </li>
+            <li>
+              Wind: {wind}km/h
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div className="row">
+        <Forecast day="Tuesday" maxTemp="28" />
+        <Forecast day="Wednesday" maxTemp="24" />
+        <Forecast day="Thursday" maxTemp="22" />
+        <Forecast day="Friday" maxTemp="20" />
+        <Forecast day="Saturday" maxTemp="25" />
+      </div>
+    </div>
+    </div>
+  );
 }
+
