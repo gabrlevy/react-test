@@ -2,9 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-//import Weather from "./Weather"
-import 'bootstrap/dist/css/bootstrap.min.css';
-//import Signature from './Signature';
 import App from './App';
 
 
