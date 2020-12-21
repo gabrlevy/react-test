@@ -37,8 +37,8 @@ export default function Weather() {
   };
 
   return (
+    <div className="weather">
     <div className="container shadow p-5 mb-5 bg-white rounded mb-0">
-    <div className="search">
       <form className="search-engine row p-2 mb-2" onSubmit={handleSubmit}>
         <input
           type="search"
@@ -58,6 +58,7 @@ export default function Weather() {
       <div className="overview">
         <h1>{message}</h1>
         <ul>
+          <li>Monday, 15:00</li>
           <li>{description}</li>
         </ul>
       </div>

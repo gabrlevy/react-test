@@ -1,13 +1,13 @@
-h1 {
+.weather h1 {
     text-align: center;
-    color: rgb(135, 135, 135);
+    color: #878787;
     display: block;
     font-family: arial, sans-serif;
-    font-size: 24px;
-    font-weight: 100;
     line-height: 28px;
     text-align: left;
     margin-bottom: 0px;
+    font-weight: 500;
+    font-size: x-large;
   }
   ul {
     margin: 0px;
@@ -15,12 +15,12 @@ h1 {
     
   }
   li {
-    color: rgb(134, 135, 135);
+    color: #878787;
     list-style: none;
     display: block;
-    font-size: 16px;
-    font-weight: 100;
-    line-height: 19.2px;
+    font-weight: lighter;
+    font-size: medium !important;
+    line-height: 22px;
     text-align: left;
   }
   li:first-letter {
