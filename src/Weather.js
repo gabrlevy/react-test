@@ -4,42 +4,48 @@ import axios from "axios";
 import "./weather.css";
 import ReactAnimatedWeather from 'react-animated-weather';
 
-
-
 export default function Weather() {
-  const [city, setCity] = useState(" ");
-  const [message, setMessage] = useState(" ");
-  const [temperature, setTemperature] = useState(null);
-  const [description, setDescription] = useState(" ");
-  const [humidity, setHumidity] = useState(null);
-  const [wind, setWind] = useState(null);
+  const [weatherData, setWeatherData] = useState({ready: false});
+  function handleResponse(response) {
+    setWeatherData({
+      ready: true,
+      temperature: response.data.main.temp,
+      wind: response.data.wind.speed,
+      city: response.data.name,
+      humidity: response.data.main.humidity,
+      description: response.data.weather[0].description,
+      date: "monday",
+    });
+  }
+  // const [city, setCity] = useState(" ");
+  // const [message, setMessage] = useState(" ");
+  // const [temperature, setTemperature] = useState(null);
+  // const [description, setDescription] = useState(" ");
+  // const [humidity, setHumidity] = useState(null);
+  // const [wind, setWind] = useState(null);
 
-  function showTemperature(response) {
-    setTemperature(Math.round(response.data.main.temp));
-    setDescription(response.data.weather[0].description);
-    setHumidity(response.data.main.humidity);
-    setWind(response.data.wind.speed);
-    setMessage(response.data.name);
-  }
-  function handleSubmit(event) {
-    event.preventDefault();
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=3ba861b54cd5df7a279d3463ebc72481&units=metric`;
-    axios.get(url).then(showTemperature);
-  }
-  function newCity(event) {
-    setCity(event.target.value);
-  }
+  // function showTemperature(response) {
+  //   setTemperature(Math.round(response.data.main.temp));
+  //   setDescription(response.data.weather[0].description);
+  //   setHumidity(response.data.main.humidity);
+  //   setWind(response.data.wind.speed);
+  //   setMessage(response.data.name);
+  // }
+
+  // function newCity(event) {
+  //   setCity(event.target.value);
+  // }
   const defaults = {
     icon: 'CLEAR_DAY',
     color: 'goldenrod',
     size: 70,
     animate: true
   };
-
+if (weatherData.ready) {
   return (
     <div className="weather">
-    <div className="container shadow p-5 mb-5 bg-white rounded mb-0">
-      <form className="search-engine row p-2 mb-2" onSubmit={handleSubmit}>
+    <div className="container border rounded p-3 mb-0">
+      <form className="search-engine row p-2 mb-2" >
         <input
           type="search"
           id="city-input"
@@ -47,7 +53,7 @@ export default function Weather() {
           autofocus="on"
           autocomplete="off"
           className="form form-control shadow-sm col-4"
-          onChange={newCity}
+          // onChange={newCity}
         />
         <input
           type="submit"
@@ -56,25 +62,26 @@ export default function Weather() {
         />
       </form>
       <div className="overview">
-        <h1>{message}</h1>
+        <h1>{weatherData.city}</h1>
         <ul>
-          <li>Monday, 15:00</li>
-          <li>{description}</li>
+          <li>{weatherData.date}</li>
+          <li>{weatherData.description}</li>
         </ul>
       </div>
       <div className="row">
         <div className="col-6">
           <div className="clearfix weather-temperature">
           <div className="icon float-left p-2"><ReactAnimatedWeather
-          className="float-left icon"
-    icon={defaults.icon}
-    color={defaults.color}
-    size={defaults.size}
-    animate={defaults.animate}
-  /></div>
+            className="float-left icon"
+            icon={defaults.icon}
+            color={defaults.color}
+            size={defaults.size}
+            animate={defaults.animate}
+          />
+          </div>
             <div className="float-left">
               <span className="temperature" id="temperature">
-                {temperature}
+                {Math.round(weatherData.temperature)}
               </span>
               <span className="units">
                 <span>
@@ -96,10 +103,10 @@ export default function Weather() {
         <div className="details float-right col-6">
           <ul>
             <li>
-              Humidity: {humidity}%
+              Humidity: {weatherData.humidity}%
             </li>
             <li>
-              Wind: {wind}km/h
+              Wind: {weatherData.wind}km/h
             </li>
           </ul>
         </div>
@@ -114,5 +121,13 @@ export default function Weather() {
     </div>
     </div>
   );
+   } else {
+    let city = "Lisboa"
+    const api_key = "3ba861b54cd5df7a279d3463ebc72481&units=metric"
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}`;
+    axios.get(url).then(handleResponse);
+
+    return(<h1>loading</h1>)
+}
 }
 

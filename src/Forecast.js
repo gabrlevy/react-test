@@ -15,11 +15,11 @@ export default function Forecast(props) {
       <div id="forecast-element">
         <h3 className="forecast-timestamp">{props.day}</h3>
         <ReactAnimatedWeather
-    icon={defaults.icon}
-    color={defaults.color}
-    size={defaults.size}
-    animate={defaults.animate}
-  />
+          icon={defaults.icon}
+          color={defaults.color}
+          size={defaults.size}
+          animate={defaults.animate}
+        />
         <br />
         <strong>{props.maxTemp}c°</strong>
       </div>

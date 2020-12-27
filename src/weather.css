@@ -9,6 +9,7 @@
     font-weight: 500;
     font-size: x-large;
   }
+  
   ul {
     margin: 0px;
     padding: 0px;
@@ -39,9 +40,18 @@
     margin: 10px;
   }
   .temperature {
+    color: rgb(32, 33, 36);
+    display: inline;
+    font-family: arial, helvetica, sans-serif;
     font-size: 64px;
+    font-stretch: 100%;
+    font-style: normal;
     font-weight: 400;
-    font: arial, sans-serif;
+    height: auto;
+    line-height: normal;
+    text-align: left;
+    user-select: none;
+    width: auto;
   }
   
   .icon {
