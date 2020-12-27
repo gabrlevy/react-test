@@ -7,7 +7,7 @@ export default function App() {
     <div className="App">
         <div className="container">
         <h1>Weather App</h1>
-        <Weather />
+        <Weather city="sao paulo"/>
         <footer>
       <a href="https://github.com/gabrlevy/react-test" target="_blankrecipes">
         {" "}

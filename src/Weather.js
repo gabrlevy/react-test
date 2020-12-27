@@ -4,7 +4,7 @@ import axios from "axios";
 import "./weather.css";
 import ReactAnimatedWeather from 'react-animated-weather';
 
-export default function Weather() {
+export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ready: false});
   function handleResponse(response) {
     setWeatherData({
@@ -124,7 +124,7 @@ if (weatherData.ready) {
    } else {
     let city = "Lisboa"
     const api_key = "3ba861b54cd5df7a279d3463ebc72481&units=metric"
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}`;
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${props.city}&appid=${api_key}`;
     axios.get(url).then(handleResponse);
 
     return(<h1>loading</h1>)
