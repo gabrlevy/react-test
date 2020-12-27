@@ -51,6 +51,7 @@ if (weatherData.ready) {
             value="Search"
             className="button form-control btn btn-primary shadow-sm col-3"
           />
+          
         </form>
           <WeatherInfo data={weatherData} />  
       </div>
