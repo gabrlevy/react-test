@@ -5,9 +5,12 @@ import WeatherInfo from "./WeatherInfo.js";
 
 export default function Weather(props) {
   const [city, setCity] = useState(props.defaultCity)
+  const [lat, setLatitude] = useState(null);
+  const [lon, setLongitude] = useState(null);
   const [weatherData, setWeatherData] = useState({ready: false});
+  
   function handleResponse(response) {
-    console.log(response)
+    console.log(response);
     setWeatherData({
       ready: true,
       temperature: response.data.main.temp,
@@ -32,6 +35,17 @@ export default function Weather(props) {
   function newCity(event) {
     setCity(event.target.value); 
   }
+  function currentCity() {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  }
+  function showPosition(position) {
+    setLatitude(position.coords.latitude);
+    setLongitude(position.coords.longitude);
+    const api_key = "9ce787f489663401b21d270d2e7a4185"  
+    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${api_key}&units=metric`;
+    axios.get(url).then(handleResponse);
+    }
+    // currentCity();
  
 if (weatherData.ready) {
   return (
@@ -52,7 +66,12 @@ if (weatherData.ready) {
             value="Search"
             className="button form-control btn btn-primary shadow-sm col-3"
           />
-
+          <input 
+            type="submit"
+            value="Current City"
+            className="button btn btn-secondary shadow-sm col-3"
+            onClick={currentCity}
+          />
         </form>
           <WeatherInfo data={weatherData} />  
       </div>
