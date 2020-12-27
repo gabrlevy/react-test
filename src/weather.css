@@ -54,8 +54,11 @@
     width: auto;
   }
   
-  .icon {
-    
+  canvas {
+    height: 64px;
+    width: 64px;
+    margin-right: 0;
+    display: inline-block;
   }
   .units {
     position: relative;
