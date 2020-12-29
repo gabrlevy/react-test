@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./weather.css";
 import WeatherInfo from "./WeatherInfo.js";
+import Forecast from "./Forecast";
 
 export default function Weather(props) {
   const [city, setCity] = useState(props.defaultCity)
   const [lat, setLatitude] = useState(null);
   const [lon, setLongitude] = useState(null);
   const [weatherData, setWeatherData] = useState({ready: false});
+  // const [forecastData, setForecastData] = useState({ready: false});
   
   function handleResponse(response) {
-    console.log(response);
+    console.log(response.data);
     setWeatherData({
       ready: true,
       temperature: response.data.main.temp,
@@ -19,19 +21,19 @@ export default function Weather(props) {
       humidity: response.data.main.humidity,
       description: response.data.weather[0].description,
       date: new Date(response.data.dt * 1000),
-      icon: response.data.weather[0].icon
+      icon: response.data.weather[0].icon,
     });
   }
-
   function handleSubmit(event) {
     event.preventDefault();
     search()
   }
   function search() {
-    const api_key = "9ce787f489663401b21d270d2e7a4185"
+    const api_key = "3ba861b54cd5df7a279d3463ebc72481"
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}&units=metric`;
     axios.get(url).then(handleResponse);
   }
+ 
   function newCity(event) {
     setCity(event.target.value); 
   }
@@ -41,12 +43,12 @@ export default function Weather(props) {
   function showPosition(position) {
     setLatitude(position.coords.latitude);
     setLongitude(position.coords.longitude);
-    const api_key = "9ce787f489663401b21d270d2e7a4185"  
+    const api_key = "3ba861b54cd5df7a279d3463ebc72481"  
     let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${api_key}&units=metric`;
     axios.get(url).then(handleResponse);
     }
     // currentCity();
- 
+
 if (weatherData.ready) {
   return (
     <div className="weather">
@@ -74,6 +76,7 @@ if (weatherData.ready) {
           />
         </form>
           <WeatherInfo data={weatherData} />  
+          <Forecast city={weatherData.city} />
       </div>
     </div>
   );

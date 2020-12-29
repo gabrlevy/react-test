@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 export default function WeatherConversion(props) {
     const [unit, setUnit] = useState("celsius")
-    const temperatureInFahrenheit = (props.temperature * 9 / 5 +32)
+    const temperatureInFahrenheit = (props.temperature * 9 / 5 + 32)
 
     function convertToFahrenheit(event) {
         event.preventDefault();

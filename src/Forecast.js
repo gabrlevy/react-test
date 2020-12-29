@@ -1,28 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import "./forecast.css";
-import ReactAnimatedWeather from 'react-animated-weather';
+import ForecastPreview from "./ForecastPreview";
 
 
 export default function Forecast(props) {
-  const defaults = {
-    icon: 'CLEAR_DAY',
-    color: 'goldenrod',
-    size: 60,
-    animate: true
-  };
-  return (
-    <div className="col-2 weather-forecast" id="forecast">
-      <div id="forecast-element">
-        <h3 className="forecast-timestamp">{props.day}</h3>
-        <ReactAnimatedWeather
-          icon={defaults.icon}
-          color={defaults.color}
-          size={defaults.size}
-          animate={defaults.animate}
-        />
-        <br />
-        <strong>{props.maxTemp}c°</strong>
-      </div>
-    </div>
-  );
+  const [forecastData, setForecastData] = useState(null);
+  const [loaded, setLoaded] = useState(false);
+
+  function handleForecast(response) {
+    setForecastData(response.data);
+    setLoaded(true);
+}
+
+  if (loaded && props.city === forecastData.city.name) {
+    return (
+        <div className="Forecast row pt-4">
+          {forecastData.list.slice(0, 5).map(function (forecastItem) {
+            return <ForecastPreview data={forecastItem} />
+          })}
+        </div>
+          );
+    } else {
+    const api_key = "3ba861b54cd5df7a279d3463ebc72481"  
+    let forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${props.city}&appid=${api_key}&units=metric`;
+    axios.get(forecastUrl).then(handleForecast);
+    
+    return null;
+}
 }

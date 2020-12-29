@@ -1,26 +1,9 @@
-.weather-forecast h3 {
-    color: rgb(134, 135, 135);
-    font-size: 14px;
-    font-weight: 400;
-    text-align: center;
-    height: 15px;
-    line-height: 15px;
-    padding-top: 7px;
-  }
-  .weather-forecast strong {
-    font-size: 17px;
-    font-weight: 400;
-    text-align: right;
-    height: 15px;
-    line-height: 15px;
-    padding-left: px;
-  }
-  
-  #forecast-element {
-    display: inline-block;
-    height: 48px;
-    padding-left: 20px;
-    box-sizing: content-box;
-    text-align: center;
-  }
-  
+.Forecast {
+  text-align: center;
+}
+
+.Forecast canvas {
+  display: block;
+  margin: 5px auto;
+
+}
