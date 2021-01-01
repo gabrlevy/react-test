@@ -13,7 +13,6 @@ export default function WeatherConversion(props) {
           x[i].innerHTML = Math.round(((x[i].innerHTML) * 9 / 5 + 32));
         }
         var y = document.getElementsByClassName("forecastUnit");
-        var i;
         for (i = 0; i < y.length; i++) {
             y[i].innerHTML = "°F";
         }
@@ -28,8 +27,7 @@ export default function WeatherConversion(props) {
             x[i].innerHTML = Math.round((x[i].innerHTML - 32) * 5 / 9);
         }
         
-        var x = document.getElementsByClassName("forecastUnit");
-        var i;
+        x = document.getElementsByClassName("forecastUnit");
         for (i = 0; i < x.length; i++) {
             x[i].innerHTML = "°C";
         }

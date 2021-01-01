@@ -8,7 +8,7 @@ export default function ForecastPreview(props) {
    
 function hours() {
     let date = new Date(props.data.dt * 1000)
-    let hours = date.getDay();
+    // let hours = date.getDay();
     // return getDayName(hours);
     
     return <FormattedDate date={date} />

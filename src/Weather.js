@@ -57,8 +57,8 @@ if (weatherData.ready) {
             type="search"
             id="city-input"
             placeholder="Type a city..."
-            autofocus="on"
-            autocomplete="off"
+            autoFocus="on"
+            autoComplete="off"
             className="form form-control shadow-sm col-4"
             onChange={newCity}
           />
