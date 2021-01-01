@@ -16,14 +16,14 @@ function hours() {
 
 function temperature() {
     let temperature = Math.round(props.data.main.temp);
-    return `${temperature}°C`
+    return `${temperature}`
 }
     
 return (
     <div className="ForecastPreview col">
         {hours()}
         <WeatherIcon code={props.data.weather[0].icon} />
-        {temperature()}
+        <span className="forecastTemp">{temperature()}</span><span className="forecastUnit">°C</span>
     </div>
 )    
 }

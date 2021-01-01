@@ -17,7 +17,7 @@ export default function Forecast(props) {
     return (
         <div className="Forecast row pt-4">
           {forecastData.list.filter(function (value, index, ar) {
-    return (index % 8 == 0);
+    return (index % 8 === 0);
           }).map(function (forecastItem) {
             return <ForecastPreview data={forecastItem} />
           })}
