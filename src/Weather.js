@@ -12,7 +12,6 @@ export default function Weather(props) {
   // const [forecastData, setForecastData] = useState({ready: false});
   
   function handleResponse(response) {
-    console.log(response.data);
     setWeatherData({
       ready: true,
       temperature: response.data.main.temp,
@@ -74,7 +73,9 @@ if (weatherData.ready) {
             className="button btn btn-secondary shadow-sm col-3"
             onClick={currentCity}
           />
+          
         </form>
+
           <WeatherInfo data={weatherData} />  
           <Forecast city={weatherData.city} />
       </div>
