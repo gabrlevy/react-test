@@ -1,10 +1,12 @@
 .Forecast {
   text-align: center;
+  font-size: 14px;
 }
 
 .Forecast canvas {
   display: block;
   margin: 5px auto;
-
+  height: 45px;
+  width: 45px;
 }
 

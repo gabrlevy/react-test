@@ -43,7 +43,7 @@
     color: rgb(32, 33, 36);
     display: inline;
     font-family: arial, helvetica, sans-serif;
-    font-size: 64px;
+    font-size: 50px;
     font-stretch: 100%;
     font-style: normal;
     font-weight: 400;
@@ -55,15 +55,15 @@
   }
   
   canvas {
-    height: 64px;
-    width: 64px;
+    height: 50px;
+    width: 50px;
     margin-right: 0;
     display: inline-block;
   }
   .units {
     position: relative;
-    font-size: 16px;
-    top: -32px;
+    font-size: 14px;
+    top: -26px;
   }
   .details {
     position: relative;
