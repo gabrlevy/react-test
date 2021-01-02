@@ -43,7 +43,7 @@
     color: rgb(32, 33, 36);
     display: inline;
     font-family: arial, helvetica, sans-serif;
-    font-size: 50px;
+    font-size: 45px;
     font-stretch: 100%;
     font-style: normal;
     font-weight: 400;
@@ -63,7 +63,7 @@
   .units {
     position: relative;
     font-size: 14px;
-    top: -26px;
+    top: -20px;
   }
   .details {
     position: relative;
