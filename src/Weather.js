@@ -14,7 +14,7 @@ const override = css`
 
 
 export default function Weather(props) {
-  const [city, setCity] = useState(null)
+  const [city, setCity] = useState("Lisbon")
   // const [lat, setLatitude] = useState(null);
   // const [lon, setLongitude] = useState(null);
   const [weatherData, setWeatherData] = useState({ready: false});
@@ -47,7 +47,8 @@ export default function Weather(props) {
     setCity(event.target.value); 
   }
   function currentCity() {
-    navigator.geolocation.getCurrentPosition(showPosition);
+    navigator.geolocation.getCurrentPosition(showPosition, getCurrentPositionError) ;
+
   }
   function showPosition(position) {
     // setLatitude(position.coords.latitude);
@@ -56,6 +57,11 @@ export default function Weather(props) {
     let url = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${api_key}&units=metric`;
     axios.get(url).then(handleResponse);
     }
+    function getCurrentPositionError(error) {
+      alert("Couldn't access your current position, check a random city instead");
+      search()
+    }
+
     // currentCity();
 
 if (weatherData.ready) {
