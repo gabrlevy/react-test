@@ -16,7 +16,7 @@ export default function Forecast(props) {
   if (loaded && props.city === forecastData.city.name) {
     return (
         <div className="Forecast row pt-4">
-          {forecastData.list.filter(function (value, index, ar) {
+          {forecastData.list.slice(8).filter(function (value, index, ar) {
     return (index % 8 === 0);
           }).map(function (forecastItem) {
             return <ForecastPreview data={forecastItem} />

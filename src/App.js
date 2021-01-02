@@ -7,7 +7,7 @@ export default function App() {
     return(
     <div className="App">
         <div className="container m-4">
-        <Weather defaultCity="sao paulo"/>
+        <Weather />
         <footer>
       <a href="https://github.com/gabrlevy/react-test" target="_blankrecipes">
         {" "}

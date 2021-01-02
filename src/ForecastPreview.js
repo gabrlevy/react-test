@@ -10,7 +10,6 @@ function hours() {
     let date = new Date(props.data.dt * 1000)
     // let hours = date.getDay();
     // return getDayName(hours);
-    
     return <FormattedDate date={date} />
 }
 

@@ -3,13 +3,23 @@ import axios from "axios";
 import "./weather.css";
 import WeatherInfo from "./WeatherInfo.js";
 import Forecast from "./Forecast";
+import { css } from "@emotion/core";
+import BounceLoader from "react-spinners/ClipLoader";
+
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: blue;
+`;
+
 
 export default function Weather(props) {
-  const [city, setCity] = useState(props.defaultCity)
-  const [lat, setLatitude] = useState(null);
-  const [lon, setLongitude] = useState(null);
+  const [city, setCity] = useState(null)
+  // const [lat, setLatitude] = useState(null);
+  // const [lon, setLongitude] = useState(null);
   const [weatherData, setWeatherData] = useState({ready: false});
-  // const [forecastData, setForecastData] = useState({ready: false});
+  let [loading, setLoading] = useState(true);
+  let [color, setColor] = useState("#ffffff");
   
   function handleResponse(response) {
     setWeatherData({
@@ -40,10 +50,10 @@ export default function Weather(props) {
     navigator.geolocation.getCurrentPosition(showPosition);
   }
   function showPosition(position) {
-    setLatitude(position.coords.latitude);
-    setLongitude(position.coords.longitude);
+    // setLatitude(position.coords.latitude);
+    // setLongitude(position.coords.longitude);
     const api_key = "3ba861b54cd5df7a279d3463ebc72481"  
-    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${api_key}&units=metric`;
+    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${api_key}&units=metric`;
     axios.get(url).then(handleResponse);
     }
     // currentCity();
@@ -82,7 +92,11 @@ if (weatherData.ready) {
     </div>
   );
   } else {
-    search();
-    return "loading"
+    currentCity();
+    return (
+    <div className="sweet-loading">
+
+    <BounceLoader color={color} loading={loading} css={override} size={160} />
+  </div>)
     }
   }
