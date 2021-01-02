@@ -52,6 +52,7 @@
     text-align: left;
     user-select: none;
     width: auto;
+    margin-left: 0;
   }
   
   canvas {
